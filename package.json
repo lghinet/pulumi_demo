@@ -1,0 +1,10 @@
+{
+    "name": "test1_pulumi",
+    "devDependencies": {
+        "@types/node": "^14"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^3.25.0",
+        "@pulumi/azure-native": "^1.60.0"
+    }
+}
