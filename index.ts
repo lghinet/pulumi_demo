@@ -1,9 +1,13 @@
-import * as pulumi from "@pulumi/pulumi";
+//import { Config } from "@pulumi/pulumi";
+//import * as pulumi from "@pulumi/pulumi";
 import * as resources from "@pulumi/azure-native/resources";
 import * as sql from "@pulumi/azure-native/sql";
+//import * as kube from "@pulumi/kubernetes";
+//import * as kubex from "@pulumi/kubernetesx";
 
 // Get the password to use for SQL from config.
-const config = new pulumi.Config();
+//const config = new Config();
+
 const pwd = "sqlPasswo234@#$@#$@#$44rd";
 const username = "pulumi";
 
@@ -19,14 +23,14 @@ const tenants = [
         "TenantId": "ba5ff8f4-ac8f-4f73-898a-5e4a6babdd46",
         "Code": "Totalsoft",
         "Apps": [
-            "nginx"
+            "nginx2"
         ]
     },
     {
         "TenantId": "da84628a-2925-4b69-9116-a90dd5a72b1f",
         "Code": "DEV",
         "Apps": [
-            "nginx"
+            "nginx2"
         ]
     }
 ]
@@ -36,7 +40,7 @@ tenants.forEach(tenant=> {
 
         const code = tenant.Code.toLowerCase()
         // Create an Azure Resource Group
-        const resourceGroup = new resources.ResourceGroup(`pulumi-${code}-resourceGroup`);
+        const resourceGroup = new resources.ResourceGroup(`pulumi_${code}_RG`);
 
         const sqlServer = new sql.Server(`${code}-sqlserver`, {
             resourceGroupName: resourceGroup.name,
