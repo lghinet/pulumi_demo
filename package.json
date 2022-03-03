@@ -1,5 +1,5 @@
 {
-    "name": "test1_pulumi",
+    "name": "nginx",
     "devDependencies": {
         "@types/node": "^14"
     },
