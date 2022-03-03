@@ -17,28 +17,35 @@ const tenants = [
     },
     {
         "TenantId": "ba5ff8f4-ac8f-4f73-898a-5e4a6babdd46",
-        "Code": "Totalsoft"
+        "Code": "Totalsoft",
+        "Apps": [
+            "nginx"
+        ]
     },
     {
         "TenantId": "da84628a-2925-4b69-9116-a90dd5a72b1f",
-        "Code": "DEV"
+        "Code": "DEV",
+        "Apps": [
+            "nginx"
+        ]
     }
 ]
 
 tenants.forEach(tenant=> {
     if (tenant.Apps?.includes("nginx")) {
 
+        const code = tenant.Code.toLowerCase()
         // Create an Azure Resource Group
-        const resourceGroup = new resources.ResourceGroup(`${tenant.Code}resourceGroup`);
+        const resourceGroup = new resources.ResourceGroup(`pulumi-${code}-resourceGroup`);
 
-        const sqlServer = new sql.Server("sqlserver", {
+        const sqlServer = new sql.Server(`${code}-sqlserver`, {
             resourceGroupName: resourceGroup.name,
             administratorLogin: username,
             administratorLoginPassword: pwd,
             version: "12.0",
         });
 
-        const database = new sql.Database(`${tenant.Code}nginxdb`, {
+        const database = new sql.Database(`${code}-nginxdb`, {
             resourceGroupName: resourceGroup.name,
             serverName: sqlServer.name,
             sku: {
