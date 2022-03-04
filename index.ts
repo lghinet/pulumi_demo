@@ -36,6 +36,7 @@ const tenants = [
 ]
 
 tenants.forEach(tenant=> {
+    
     if (tenant.Apps?.includes("nginx")) {
 
         const code = tenant.Code.toLowerCase()
