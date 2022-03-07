@@ -6,6 +6,8 @@ import * as sql from "@pulumi/azure-native/sql";
 //import * as kubex from "@pulumi/kubernetesx";
 
 // Get the password to use for SQL from config.
+
+
 //const config = new Config();
 
 const pwd = "sqlPasswo234@#$@#$@#$44rd";
